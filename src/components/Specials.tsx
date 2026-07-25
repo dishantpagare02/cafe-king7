@@ -1,83 +1,107 @@
 import { motion } from 'motion/react';
-import { Star } from 'lucide-react';
-import imgKitKatFrappe from '../assets/images/regenerated_image_1784379776420.jpg';
-import imgMangoMastani from '../assets/images/regenerated_image_1784380445171.jpg';
-import imgDryFruitMastani from '../assets/images/regenerated_image_1784380447821.jpg';
-import imgCheeseBurstPizza from '../assets/images/regenerated_image_1784380449177.jpg';
 
 const specials = [
-  { name: 'KitKat Frappe', desc: 'Chocolaty crunch with smooth coffee', icon: '🍫', image: imgKitKatFrappe },
-  { name: 'Oreo Frappe', desc: 'Classic cookie blended perfection', icon: '🍪', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400' },
-  { name: 'Mango Mastani', desc: 'Rich mango shake with ice cream', icon: '🥭', image: imgMangoMastani },
-  { name: 'Dry Fruit Mastani', desc: 'Loaded with premium nuts', icon: '🥜', image: imgDryFruitMastani },
-  { name: 'Cheese Burst Pizza', desc: 'Oozing cheese in every bite', icon: '🧀', image: imgCheeseBurstPizza },
+  {
+    num: 'Signature 01',
+    name: 'KitKat Frappe',
+    desc: 'Chocolaty crunch with smooth coffee perfection.',
+    price: '₹90',
+    highlight: false,
+    badge: 'Popular',
+  },
+  {
+    num: 'Signature 02',
+    name: 'Cheese Burst Pizza',
+    desc: 'Oozing premium cheese in every single bite.',
+    price: '₹150',
+    highlight: true,
+    badge: 'Chef Choice',
+  },
+  {
+    num: 'Signature 03',
+    name: 'Mango Mastani',
+    desc: 'Rich mango shake topped with velvet ice cream.',
+    price: '₹90 / ₹160',
+    highlight: false,
+    badge: 'Seasonal',
+  },
 ];
 
 export default function Specials() {
   return (
-    <section id="specials" className="py-24 bg-white dark:bg-gray-900 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-          <div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-cafe-brown dark:text-cafe-cream">Cafe King's Specials</h2>
-            <div className="h-1 w-24 bg-cafe-gold rounded-full"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl">Our most loved signature items that keep our customers coming back for more.</p>
+    <section id="specials" className="py-20 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+        <div>
+          <div className="font-['Space_Mono'] text-xs font-bold uppercase tracking-widest text-[#FF5C35] mb-2 bg-white inline-block px-3 py-1 rounded-full border border-[#2D2926]">
+            [ Signature Menu ]
           </div>
-          <div className="mt-6 md:mt-0">
-            <a href="#menu" className="text-cafe-gold hover:text-cafe-brown dark:hover:text-white font-medium flex items-center gap-1 transition-colors">
-              See full menu <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
+          <h2 className="font-['Gaegu'] text-6xl sm:text-7xl font-bold text-[#2D2926]">
+            Specials & Highlights
+          </h2>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {specials.map((item, index) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-2xl p-6 flex flex-col justify-between ${
-                index === 0 
-                  ? 'bg-cafe-brown text-white lg:col-span-2 lg:flex-row items-center gap-6' 
-                  : 'bg-cafe-cream dark:bg-gray-800'
-              }`}
-            >
-              <div className={index === 0 ? 'lg:w-1/2' : ''}>
-                <div className="flex items-center gap-2 mb-3">
-                  <Star className={`h-5 w-5 ${index === 0 ? 'text-cafe-gold' : 'text-cafe-gold'}`} fill="currentColor" />
-                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">Signature</span>
-                </div>
-                <h3 className={`font-heading text-2xl font-bold mb-2 ${index === 0 ? 'text-white' : 'text-cafe-black dark:text-white'}`}>
-                  {item.name}
-                </h3>
-                <p className={`mb-6 ${index === 0 ? 'text-gray-300' : 'text-gray-600 dark:text-gray-400'}`}>
-                  {item.desc}
-                </p>
-                <button className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                  index === 0 
-                    ? 'bg-cafe-gold text-white hover:bg-white hover:text-cafe-brown' 
-                    : 'bg-cafe-brown text-white dark:bg-cafe-gold hover:bg-opacity-90'
-                }`}>
-                  Order Now
-                </button>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {specials.map((item, idx) => (
+          <motion.div
+            key={item.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            className={`p-8 rounded-3xl border-3 border-[#2D2926] flex flex-col justify-between transition-transform duration-300 ${
+              item.highlight
+                ? 'bg-[#FF5C35] text-white shadow-[8px_8px_0_#2D2926] -rotate-1 hover:rotate-0'
+                : 'bg-white text-[#2D2926] shadow-[6px_6px_0_#2D2926] hover:-translate-y-1'
+            }`}
+          >
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <span
+                  className={`font-['Space_Mono'] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${
+                    item.highlight
+                      ? 'bg-white text-[#2D2926] border-[#2D2926]'
+                      : 'bg-[#FFFEF2] text-[#FF5C35] border-[#FF5C35]'
+                  }`}
+                >
+                  {item.badge}
+                </span>
+                <span className="font-['Space_Mono'] text-xs font-bold opacity-70">
+                  {item.num}
+                </span>
               </div>
-              
-              <div className={`mt-6 ${index === 0 ? 'mt-0 lg:w-1/2 flex justify-end' : ''}`}>
-                <div className={`relative overflow-hidden rounded-xl shadow-lg ${
-                  index === 0 ? 'w-full h-48 lg:h-56' : 'w-full h-40'
-                }`}>
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                  <div className="absolute top-3 right-3 bg-white dark:bg-gray-800 text-2xl w-10 h-10 rounded-full flex items-center justify-center shadow-md">
-                    {item.icon}
-                  </div>
-                </div>
+
+              <h3 className="font-['Gaegu'] text-4xl sm:text-5xl font-bold leading-none mb-4">
+                {item.name}
+              </h3>
+
+              <p
+                className={`font-['Inter'] text-base mb-8 font-normal leading-relaxed ${
+                  item.highlight ? 'text-white/90' : 'text-[#2D2926]/75'
+                }`}
+              >
+                {item.desc}
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between border-t border-[#2D2926]/10 pt-6">
+              <div className="font-['Gaegu'] text-4xl font-bold">
+                {item.price}
               </div>
-            </motion.div>
-          ))}
-        </div>
+              <a
+                href="#contact"
+                className={`btn-playful text-xl py-2 px-6 ${
+                  item.highlight ? 'bg-white text-[#2D2926] hover:bg-[#FFFEF2] hover:text-[#FF5C35]' : ''
+                }`}
+              >
+                Order
+              </a>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
 }
+
+

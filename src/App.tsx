@@ -29,10 +29,10 @@ export default function App() {
   }, [darkMode]);
 
   return (
-    <div className="relative antialiased selection:bg-cafe-gold selection:text-white">
+    <div className="relative antialiased selection:bg-[#FF5C35] selection:text-white min-h-screen bg-[#FFFEF2] text-[#2D2926]">
       <ScrollProgress />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <main>
+      <Navbar />
+      <main className="overflow-x-hidden">
         <Hero />
         <Menu />
         <Specials />

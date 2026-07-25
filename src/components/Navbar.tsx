@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Moon, Sun, Coffee } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Navbar({ darkMode, setDarkMode }: { darkMode: boolean, setDarkMode: (dark: boolean) => void }) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,86 +23,67 @@ export default function Navbar({ darkMode, setDarkMode }: { darkMode: boolean, s
   ];
 
   return (
-    <nav
-      className={`fixed w-full z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-cafe-white/80 dark:bg-cafe-black/80 backdrop-blur-md shadow-sm py-3'
-          : 'bg-transparent py-5'
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-6 sm:px-12 ${
+        isScrolled ? 'bg-[#FFFEF2]/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Coffee className={`h-8 w-8 ${isScrolled ? 'text-cafe-brown dark:text-cafe-gold' : 'text-cafe-gold'}`} />
-            <span className={`font-heading text-2xl font-bold tracking-tight ${isScrolled ? 'text-cafe-brown dark:text-cafe-cream' : 'text-white'}`}>
-              Cafe King
-            </span>
-          </div>
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Brand */}
+        <a href="#" className="font-['Gaegu'] text-3xl sm:text-4xl text-[#FF5C35] font-bold -rotate-2 hover:rotate-0 transition-transform">
+          Cafe King*
+        </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-cafe-gold ${
-                  isScrolled ? 'text-cafe-black dark:text-cafe-cream' : 'text-white/90 hover:text-white'
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-full transition-colors ${
-                isScrolled
-                  ? 'hover:bg-cafe-beige dark:hover:bg-gray-800 text-cafe-black dark:text-cafe-cream'
-                  : 'hover:bg-white/20 text-white'
-              }`}
-            >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+        {/* Desktop Nav Cluster */}
+        <nav className="hidden md:flex items-center gap-6 bg-white px-8 py-3 rounded-full border-2 border-[#2D2926] shadow-[4px_4px_0_#2D2926]">
+          {navLinks.map((link) => (
             <a
-              href="#contact"
-              className="bg-cafe-gold text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg"
+              key={link.name}
+              href={link.href}
+              className="font-['Space_Mono'] text-xs font-bold uppercase tracking-wider text-[#2D2926] hover:text-[#FF5C35] transition-colors"
             >
-              Order Now
+              {link.name}
             </a>
-          </div>
+          ))}
+        </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-full ${isScrolled ? 'text-cafe-black dark:text-cafe-cream' : 'text-white'}`}
-            >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 ${isScrolled ? 'text-cafe-black dark:text-cafe-cream' : 'text-white'}`}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+        {/* Right Info Label / CTA */}
+        <div className="hidden lg:flex items-center gap-4">
+          <div className="font-['Space_Mono'] text-[0.7rem] uppercase tracking-wider text-[#2D2926] font-bold">
+            Est. 2016 / 10AM-10PM
           </div>
+          <a href="#contact" className="btn-playful text-lg py-2 px-6">
+            Order Now
+          </a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 bg-white text-[#2D2926] border-2 border-[#2D2926] rounded-xl shadow-[3px_3px_0_#2D2926]"
+            aria-label="Toggle Navigation"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full bg-cafe-white dark:bg-cafe-black shadow-lg py-4 px-4 flex flex-col space-y-4"
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden absolute top-full left-6 right-6 bg-white border-2 border-[#2D2926] shadow-[6px_6px_0_#2D2926] rounded-2xl py-6 px-6 flex flex-col space-y-4 mt-2"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-cafe-black dark:text-cafe-cream font-medium text-lg border-b border-cafe-beige dark:border-gray-800 pb-2"
+                className="font-['Gaegu'] text-2xl font-bold text-[#2D2926] hover:text-[#FF5C35] py-1 border-b border-[#2D2926]/10"
               >
                 {link.name}
               </a>
@@ -110,13 +91,15 @@ export default function Navbar({ darkMode, setDarkMode }: { darkMode: boolean, s
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="bg-cafe-gold text-white text-center px-5 py-3 rounded-md text-base font-medium mt-4 inline-block"
+              className="btn-playful mt-2 text-center py-2"
             >
               Order Now
             </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 }
+
+
