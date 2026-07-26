@@ -66,8 +66,8 @@ export default function Hero() {
           {/* Floater Badge */}
           <div className="absolute -bottom-6 -left-4 sm:-left-8 bg-white border-2 border-[#2D2926] p-5 rounded-2xl shadow-[8px_8px_0_#2D2926] max-w-[220px] -rotate-3">
             <div className="font-['Gaegu'] text-lg text-[#FF5C35] font-bold mb-1">Our Best-Seller!</div>
-            <h3 className="font-['Gaegu'] text-2xl font-bold leading-tight text-[#2D2926] mb-1">KitKat Frappe</h3>
-            <p className="font-['Inter'] text-xs text-[#2D2926]/70 leading-normal mb-3">Chocolaty crunch meets coffee. So smooth!</p>
+            <h3 className="font-['Gaegu'] text-2xl font-bold leading-tight text-[#2D2926] mb-1">Paneer Chatpata Sandwich</h3>
+            <p className="font-['Inter'] text-xs text-[#2D2926]/70 leading-normal mb-3">Tangy, spicy paneer filling grilled to perfection!</p>
             <div className="font-['Gaegu'] font-bold text-2xl text-[#2D2926]">₹150</div>
           </div>
         </div>
